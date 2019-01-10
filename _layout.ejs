@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Navigation</title>
+  <link rel="stylesheet" href="/app.css">
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Mitr|Prompt" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="/app.js"></script>
+
+  <style media="screen">
+    body {
+      margin: 0;
+      font-family: 'Mitr', sans-serif;
+    }
+    a {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+
+<body>
+  <div id="app">
+    <nav>
+      <div class="left">
+        <a href="#" class="logo">
+          <img src="/logo.svg" alt="">
+        </a>
+        <ul>
+          <li><a href="#">หน้าแรก</a></li>
+          <li class="dropdown">
+            <a @click.prevent="toggleDropdown(1)">สินค้า</a>
+            <transition name="fade">
+              <ul class="dropdown-content" v-show="dropdown == 1">
+                <li><a href="#">1234</a></li>
+                <li><a href="#">1234</a></li>
+              </ul>
+            </transition>
+          </li>
+          <li><a href="#">เกี่ยวกับเรา</a></li>
+          <li><a href="#">ติดต่อเรา</a></li>
+
+        </ul>
+      </div>
+      <div class="right">
+        <button class="menu fas fa-bars" :class="{'active' : menuToggle}" @click="menuToggle = !menuToggle"></button>
+      </div>
+    </nav>
+    <transition name="menu">
+      <div class="mobile-menu" v-show="menuToggle">
+        <ul>
+          <li><a href="#">หน้าแรก</a></li>
+          <li class="dropdown"><a :class="{'active' : dropdown == 1}" @click.prevent="toggleDropdown(1)">สินค้า</a></li>
+          <transition name="height" mode="out-in">
+            <div class="mobile-dropdown" v-show="dropdown == 1">
+              <li><a href="#">123456</a></li>
+              <li><a href="#">123456</a></li>
+            </div>
+          </transition>
+          <li><a href="#">หน้าแรก</a></li>
+          <li><a href="#">หน้าแรก</a></li>
+        </ul>
+      </div>
+    </transition>
+  </div>
+</body>
+
+</html>
