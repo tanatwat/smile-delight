@@ -1,3 +1,5 @@
+@import "var"
+
 body, html, #app
   margin: 0
   height: 100%
@@ -13,7 +15,10 @@ nav
   flex-shrink: 0
 
 .container
+  position: relative
   flex: 1 0 auto
+  margin-top: $nav-height-small + 1
+  padding: $container-padding-small
 
 footer
   flex-shrink: 0
@@ -25,3 +30,9 @@ footer
 
 a
   cursor: pointer
+
+@media(min-width: 768px)
+    .container
+      position: relative
+      margin-top: auto
+      padding: $container-padding-medium
