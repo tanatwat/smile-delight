@@ -13,16 +13,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="/app.js"></script>
-
-  <style media="screen">
-    body {
-      margin: 0;
-      font-family: 'Mitr', sans-serif;
-    }
-    a {
-      cursor: pointer;
-    }
-  </style>
 </head>
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 
@@ -69,6 +59,10 @@
         </ul>
       </div>
     </transition>
+
+    <div class="container">
+      <%- yield %>
+    </div>
   </div>
 </body>
 
