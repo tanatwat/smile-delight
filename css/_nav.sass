@@ -1,4 +1,5 @@
 @import "var"
+@import "./foundation/settings"
 
 nav
   .left, .right
@@ -8,15 +9,18 @@ nav
   position: fixed
   top: 0
   right: 0
-  display: flex
   width: 100%
   z-index: 1
-  justify-content: space-between
   background-color: $nav-bg
   height: $nav-height-small
   padding: $nav-padding-small
   border-bottom: $nav-border
   box-shadow: $nav-shadow
+  .nav-wrapper
+    display: flex
+    margin: 0 auto
+    max-width: $global-width
+    justify-content: space-between
   .logo img
     height: $nav-height-small
     max-width: 120px

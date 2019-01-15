@@ -1,26 +1,27 @@
 <nav>
-  <div class="left">
-    <a href="#" class="logo">
-      <img src="/img/logo.svg" alt="">
-    </a>
-    <ul>
-      <li><a href="#">หน้าแรก</a></li>
-      <li class="dropdown">
-        <a @click.prevent="toggleDropdown(1)">สินค้า</a>
-        <transition name="fade">
-          <ul class="dropdown-content" v-show="dropdown == 1">
-            <li><a href="#">dropdown</a></li>
-            <li><a href="#">dropdown</a></li>
-          </ul>
-        </transition>
-      </li>
-      <li><a href="#">เกี่ยวกับเรา</a></li>
-      <li><a href="#">ติดต่อเรา</a></li>
-
-    </ul>
-  </div>
-  <div class="right">
-    <button class="menu fas fa-bars" :class="{'active' : menuToggle}" @click="menuToggle = !menuToggle"></button>
+  <div class="nav-wrapper">
+    <div class="left">
+      <a href="#" class="logo">
+        <img src="/img/logo.svg" alt="">
+      </a>
+      <ul>
+        <li><a href="#">หน้าแรก</a></li>
+        <li class="dropdown">
+          <a @click.prevent="toggleDropdown(1)">สินค้า</a>
+          <transition name="fade">
+            <ul class="dropdown-content" v-show="dropdown == 1">
+              <li><a href="#">dropdown</a></li>
+              <li><a href="#">dropdown</a></li>
+            </ul>
+          </transition>
+        </li>
+        <li><a href="#">เกี่ยวกับเรา</a></li>
+        <li><a href="#">ติดต่อเรา</a></li>
+      </ul>
+    </div>
+    <div class="right">
+      <button class="menu fas fa-bars" :class="{'active' : menuToggle}" @click="menuToggle = !menuToggle"></button>
+    </div>
   </div>
 </nav>
 <transition name="menu">
