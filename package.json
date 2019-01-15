@@ -4,7 +4,9 @@
   "description": "Navigation templates",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch nav.sass nav.css"
+    "sass": "sass --watch nav.sass nav.css",
+    "parcel": "parcel js/app.js",
+    "build": "harp compile dist"
   },
   "author": "Tanatwat",
   "license": "ISC",
@@ -12,6 +14,14 @@
     "foundation-sites": "^6.5.1",
     "jquery": "^3.3.1",
     "vue": "^2.5.22",
-    "vue-carousel": "^0.17.0"
+    "vue-hot-reload-api": "^2.3.1",
+    "vue-slick": "^1.1.15"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.5.0",
+    "vue-template-compiler": "^2.5.22"
   }
 }

@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div class="right">
-      <button class="menu fas fa-bars" :class="{'active' : menuToggle}" @click="menuToggle = !menuToggle"></button>
+      <button class="menu fas fa-bars" :class="{'active' : menuToggle}" @click.prevent="menuToggle = !menuToggle"></button>
     </div>
   </div>
 </nav>
