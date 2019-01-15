@@ -1,0 +1,5 @@
+{
+  "banners": {
+    "COMMENT": "ADD ANY THING HERE ARRAY OR WHATEVER call this on the view by <%- public.img._data.banners %>"
+  }
+}
