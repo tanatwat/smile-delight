@@ -1,0 +1,38 @@
+@import "var"
+
+$btn-padding: 10px 15px
+$btn-border: none
+$btn-border-radius: 5px
+
+$btn-idle-bg: ( primary: $global-idle-bg, primary-alt: #fff, submit: green, submit-alt: red)
+$btn-active-bg: ( primary: $global-hover-bg, primary-alt: #fff, submit: black, submit-alt: red)
+
+$btn-idle-color: ( primary: #fff, primary-alt: #fff, submit: blue, submit-alt: red)
+$btn-active-color: ( primary: #ddd, primary-alt: #fff, submit: blue, submit-alt: red)
+
+$btn-border-color-idle: ( primary: #ddd, primary-alt: #fff, submit: blue, submit-alt: red)
+$btn-border-color-active: ( primary: #ddd, primary-alt: #fff, submit: blue, submit-alt: red)
+
+
+button.btn
+    padding: $btn-padding
+    border: $btn-border
+    border-radius: $btn-border-radius
+    cursor: pointer
+    transition: all .3s ease
+    &.primary
+      color: map-get($btn-idle-color, primary)
+      background-color: map-get($btn-idle-bg, primary)
+      border-color: map-get($btn-border-color-idle, primary)
+      &:hover
+        color: map-get($btn-active-color, primary)
+        background-color: map-get($btn-active-bg, primary)
+        border-color: map-get($btn-border-color-active, primary)
+    &.submit
+      color: map-get($btn-idle-color, submit)
+      background-color: map-get($btn-idle-bg, submit)
+      border-color: map-get($btn-border-color-idle, submit)
+      &:hover
+        color: map-get($btn-active-color, submit)
+        background-color: map-get($btn-active-bg, submit)
+        border-color: map-get($btn-border-color-active, submit)

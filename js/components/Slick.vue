@@ -1,10 +1,10 @@
 <template>
 <div class="slider-vue">
 	<slick ref="slick" :options="slickOptions">
-		<a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
+		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
+		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
+		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
 	</slick>
 </div>
 </template>
@@ -15,11 +15,24 @@ export default {
 	components: {
 		Slick
 	},
+	props: ['auto', 'fading'],
 	data() {
 		return {
 			slickOptions: {
 				slidesToShow: 1,
 				dots: true,
+				infinite: true,
+				autoplay: this.auto,
+				autoplaySpeed: 1800,
+				fade: this.fading,
+				responsive: [
+					{
+						breakpoint: 768,
+						settings: {
+							arrows: false
+						}
+					}
+				]
 			},
 		};
 	},

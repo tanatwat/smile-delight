@@ -11130,7 +11130,85 @@ function getOuterHTML(el) {
 
 Vue.compile = compileToFunctions;
 module.exports = Vue;
-},{}],"../../../../../usr/local/lib/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
+},{}],"../node_modules/vue-clickaway/dist/vue-clickaway.common.js":[function(require,module,exports) {
+'use strict';
+
+var Vue = require('vue');
+
+Vue = 'default' in Vue ? Vue['default'] : Vue;
+var version = '2.2.2';
+var compatible = /^2\./.test(Vue.version);
+
+if (!compatible) {
+  Vue.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + Vue.version);
+} // @SECTION: implementation
+
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+  var vm = vnode.context;
+  var callback = binding.value;
+
+  if (typeof callback !== 'function') {
+    if ("development" !== 'production') {
+      Vue.util.warn('v-' + binding.name + '="' + binding.expression + '" expects a function value, ' + 'got ' + callback);
+    }
+
+    return;
+  } // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+
+
+  var initialMacrotaskEnded = false;
+  setTimeout(function () {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function (ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function (el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind
+};
+var mixin = {
+  directives: {
+    onClickaway: directive
+  }
+};
+exports.version = version;
+exports.directive = directive;
+exports.mixin = mixin;
+},{"vue":"../node_modules/vue/dist/vue.common.js"}],"../../../../../usr/local/lib/node_modules/parcel/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -24885,11 +24963,22 @@ var _default = {
   components: {
     Slick: _vueSlick.default
   },
+  props: ['auto', 'fading'],
   data: function data() {
     return {
       slickOptions: {
         slidesToShow: 1,
-        dots: true
+        dots: true,
+        infinite: true,
+        autoplay: this.auto,
+        autoplaySpeed: 1800,
+        fade: this.fading,
+        responsive: [{
+          breakpoint: 768,
+          settings: {
+            arrows: false
+          }
+        }]
       }
     };
   },
@@ -24914,25 +25003,25 @@ exports.default = _default;
     { staticClass: "slider-vue" },
     [
       _c("slick", { ref: "slick", attrs: { options: _vm.slickOptions } }, [
-        _c("a", { attrs: { href: "http://placehold.it/2000x1000" } }, [
+        _c("a", { attrs: { href: "#" } }, [
           _c("img", {
             attrs: { src: "http://placehold.it/2000x1000", alt: "" }
           })
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "http://placehold.it/2000x1000" } }, [
+        _c("a", { attrs: { href: "#" } }, [
           _c("img", {
             attrs: { src: "http://placehold.it/2000x1000", alt: "" }
           })
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "http://placehold.it/2000x1000" } }, [
+        _c("a", { attrs: { href: "#" } }, [
           _c("img", {
             attrs: { src: "http://placehold.it/2000x1000", alt: "" }
           })
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "http://placehold.it/2000x1000" } }, [
+        _c("a", { attrs: { href: "#" } }, [
           _c("img", {
             attrs: { src: "http://placehold.it/2000x1000", alt: "" }
           })
@@ -24976,11 +25065,14 @@ render._withStripped = true
 
 var _vue = _interopRequireDefault(require("vue"));
 
+var _vueClickaway = require("vue-clickaway");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.document.addEventListener("DOMContentLoaded", function () {
   var app = new _vue.default({
     el: '#app',
+    mixins: [_vueClickaway.mixin],
     data: function data() {
       return {
         dropdown: null,
@@ -24989,23 +25081,22 @@ window.document.addEventListener("DOMContentLoaded", function () {
     },
     methods: {
       toggleDropdown: function toggleDropdown(id) {
-        console.log(id);
-
-        if (id === this.dropdown) {
-          this.dropdown = null;
+        if (id) {
+          if (id === this.dropdown) {
+            this.dropdown = null;
+          } else {
+            this.dropdown = id;
+          }
         } else {
-          this.dropdown = id;
+          this.dropdown = null;
         }
       }
-    },
-    mounted: function mounted() {
-      console.log('Vue INIT');
     }
   });
 });
 
 _vue.default.component('vue-slick', require('./components/Slick.vue').default);
-},{"vue":"../node_modules/vue/dist/vue.common.js","./components/Slick.vue":"components/Slick.vue"}],"../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"../node_modules/vue/dist/vue.common.js","vue-clickaway":"../node_modules/vue-clickaway/dist/vue-clickaway.common.js","./components/Slick.vue":"components/Slick.vue"}],"../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -25032,7 +25123,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42959" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46501" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
