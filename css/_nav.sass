@@ -94,6 +94,7 @@ nav.fixed
     border: $nav-border
     min-width: $dropdown-width
     flex-direction: column
+    white-space: nowrap
     a
       text-align: left
       height: $dropdown-height
@@ -131,8 +132,17 @@ nav.fixed
     color: $menu-link-hover
     border-left: $menu-link-hover-border
   a.active
-    background: $menu-link-hover-bg
-    color: $menu-link-hover
+    background: $menu-link-active-bg
+    color: $menu-link-active-color
+
+.mobile-dropdown
+  border-top: $menu-dropdown-border
+  a
+    color: $global-link-color
+    background: $menu-dropdown-bg
+    &:hover
+      color: $menu-link-hover
+      background: $menu-link-hover-bg
 
 @media(min-width: 768px)
   .mobile-menu

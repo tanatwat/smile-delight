@@ -1,29 +1,45 @@
 <div class="grid-container">
-
-  <vue-slick :auto="true" :fading="false"></vue-slick>
-
-  <div class="grid-x grid-padding-x small-up-1">
-    <div class="cell">
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book.
-        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with
-        desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-      </p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book.
-        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with
-        desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-      </p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book.
-        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with
-        desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </p>
-    </div>
+  <div class="slick-banner">
+    <vue-slick :auto="true" :fading="false" :banner-qty="2"></vue-slick>
   </div>
+  <section>
+    <div class="text-center">
+      <h1 class="header">Smile Delight Clinic</h1>
+    </div>
+    <div class="grid-x grid-padding-x medium-up-3 small-up-1">
+      <div class="cell text-center">
+        <img class="info-media" src="/img/coin.jpg" alt="coin.jpg">
+        <h3 class="header">ประกันสังคม</h3>
+        <p class="lead">สามารถใช้สิทธิประกันสังคม<br>แบบไม่ต้องสำรองจ่ายได้</p>
+      </div>
+      <div class="cell text-center">
+        <img class="info-media" src="/img/dentist.jpg" alt="dentist.jpg">
+        <h3 class="header">ทันตแพย์เฉพาะทาง</h3>
+        <p class="lead">จัดฟันกับทันตแพทย์<br>ผู้เชี่ยวชาญด้านการจัดฟันโดยเฉพาะ</p>
+      </div>
+      <div class="cell text-center">
+        <img class="info-media" src="/img/tooth.jpg" alt="tooth.jpg">
+        <h3 class="header">ปรึกษาฟรี</h3>
+        <p class="lead">เราพร้อมให้คำแนะนำ<br>ก่อนที่จะตัดสินใจใช้บริการ</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:25px">
+    <h2 class="header text-center">บริการของเรา</h2>
+    <div class="grid-x grid-padding-x medium-up-3 small-up-1">
+      <div class="cell" v-for="service in services">
+        <a :href="'/pricing/' + service.link">
+          <div class="card">
+            <div class="card-section">
+              <img :src="'/img/service/' + service.img">
+            </div>
+            <div class="card-section text-center">
+              <h4>{{ service.title }}</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>

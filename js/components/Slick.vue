@@ -1,10 +1,9 @@
 <template>
 <div class="slider-vue">
 	<slick ref="slick" :options="slickOptions">
-		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
-		<a href="#"><img src="http://placehold.it/2000x1000" alt=""></a>
+		<a :href="link" v-for="(link, index) in $root.banners">
+			<img :src="'/img/banner/banner_' + (index + 1) + '.jpg'" alt="">
+		</a>
 	</slick>
 </div>
 </template>
@@ -15,7 +14,7 @@ export default {
 	components: {
 		Slick
 	},
-	props: ['auto', 'fading'],
+	props: ['auto', 'fading', 'bannerQty'],
 	data() {
 		return {
 			slickOptions: {
@@ -23,13 +22,14 @@ export default {
 				dots: true,
 				infinite: true,
 				autoplay: this.auto,
-				autoplaySpeed: 1800,
+				autoplaySpeed: 2000,
 				fade: this.fading,
 				responsive: [
 					{
 						breakpoint: 768,
 						settings: {
-							arrows: false
+							arrows: false,
+							dots: false
 						}
 					}
 				]

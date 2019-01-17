@@ -2,16 +2,20 @@
   <div class="nav-wrapper">
     <div class="left">
       <a href="#" class="logo">
-        <img src="/img/logo.svg" alt="">
+        <img src="/img/logo-large.png" alt="">
       </a>
       <ul>
         <li><a href="/">หน้าแรก</a></li>
-        <li class="dropdown" v-on-clickaway="toggleDropdown">
-          <a @click.prevent="toggleDropdown(1)">สินค้า</a>
+        <li class="dropdown" v-on-clickaway="closeDropdown">
+          <a @click.prevent="dropdown = !dropdown">ค่าบริการ</a>
           <transition name="fade">
-            <ul class="dropdown-content" v-show="dropdown == 1">
-              <li><a href="#">dropdown</a></li>
-              <li><a href="#">dropdown</a></li>
+            <ul class="dropdown-content" v-show="dropdown">
+              <li v-for="(service, index) in services" v-show="index !== 4">
+                <a :href="'/pricing/' + service.link">
+                  {{ service.title }}
+                  <font v-show="index == 3">{{ services[4].title }}</font>
+                </a>
+              </li>
             </ul>
           </transition>
         </li>
@@ -28,11 +32,17 @@
   <div class="mobile-menu" v-show="menuToggle">
     <ul>
       <li><a href="/">หน้าแรก</a></li>
-      <li class="dropdown"><a :class="{'active' : dropdown == 1}" @click.prevent="toggleDropdown(1)">สินค้า</a></li>
-      <transition name="height" mode="out-in">
-        <div class="mobile-dropdown" v-show="dropdown == 1">
-          <li><a href="#">dropdown</a></li>
-          <li><a href="#">dropdown</a></li>
+      <li class="dropdown">
+        <a :class="{'active' : dropdownMobile}" @click.prevent="dropdownMobile = !dropdownMobile">ค่าบริการ</a>
+      </li>
+      <transition>
+        <div class="mobile-dropdown" v-show="dropdownMobile">
+          <li v-for="(service, index) in services" v-show="index !== 4">
+            <a :href="'/pricing/' + service.link">
+              {{ service.title }}
+              <font v-show="index == 3">{{ services[4].title }}</font>
+            </a>
+          </li>
         </div>
       </transition>
       <li><a href="/about">เกี่ยวกับเรา</a></li>
