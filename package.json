@@ -4,7 +4,7 @@
   "description": "Navigation templates",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch nav.sass nav.css",
+    "sass": "sass --watch css/app.sass css/app.min.css --style compressed",
     "parcel": "parcel js/app.js",
     "build": "harp compile dist"
   },
