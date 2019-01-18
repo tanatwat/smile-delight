@@ -4,13 +4,16 @@
   "description": "Navigation templates",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch css/app.sass css/app.min.css --style compressed",
+    "sass-watch": "sass --watch css/_app.sass css/app.min.css --style compressed",
+    "sass": "sass css/_app.sass css/app.min.css --style compressed",
     "parcel": "parcel js/app.js",
-    "build": "harp compile dist"
+    "parcel-build": "parcel build js/app.js",
+    "build": "npm run sass && npm run parcel-build"
   },
   "author": "Tanatwat",
   "license": "ISC",
   "dependencies": {
+    "aos": "^3.0.0-beta.6",
     "foundation-sites": "^6.5.1",
     "jquery": "^3.3.1",
     "vue": "^2.5.22",

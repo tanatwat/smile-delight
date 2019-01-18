@@ -1,7 +1,7 @@
 <template>
 <div class="slider-vue">
 	<slick ref="slick" :options="slickOptions">
-		<a :href="link" v-for="(link, index) in $root.banners">
+		<a :href="link" v-for="(link, index) in bannerQty">
 			<img :src="'/img/banner/banner_' + (index + 1) + '.jpg'" alt="">
 		</a>
 	</slick>
