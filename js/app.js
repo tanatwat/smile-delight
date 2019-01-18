@@ -40,7 +40,7 @@ window.document.addEventListener("DOMContentLoaded", function() {
           img: 'regular.jpg',
           link: 'dental'
         }],
-        banners: ['/pricing/ortho', '#']
+        banners: ['/pricing/ortho', '/pricing/implants', '/pricing/whitening', '#']
       };
     },
     methods: {
