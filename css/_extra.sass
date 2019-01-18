@@ -79,6 +79,11 @@ $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
   h1,h2,h3,h4,h5,p
     margin: 0
 
+.messenger-wrapper
+  position: fixed
+  bottom: 15px
+  right: 15px
+
 @media (min-width: 768px)
   .social-btn
     &.messenger
@@ -86,7 +91,9 @@ $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
       right: 30px
   .contact-list
     margin-top: 0
-
+  .messenger-wrapper
+    bottom: 30px
+    right: 30px
   #gmap_canvas
     width: 100%
     height: 500px
@@ -96,7 +103,9 @@ $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
     &.messenger
       bottom: 30px
       right: 50px
-
+    .messenger-wrapper
+      bottom: 30px
+      right: 50px
 .card img
   border-radius: 8px
 .card-section:nth-child(2)
