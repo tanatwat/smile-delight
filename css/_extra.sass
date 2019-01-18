@@ -21,7 +21,8 @@ section
 $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
 
 .social-btn
-  display: block
+  display: flex
+  justify-content: center
   height: 40px
   color: #fff
   padding: 0 10px
@@ -29,7 +30,8 @@ $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
   box-shadow: none
   font
     display: inline-block
-    vertical-align: text-top
+    line-height: 40px
+    padding-left: 8px 
   i
     line-height: 40px !important
     font-size: 1.5rem
@@ -83,7 +85,7 @@ $btn-shadow: 0 1px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19)
   position: fixed
   bottom: 15px
   right: 15px
-
+position
 @media (min-width: 768px)
   .social-btn
     &.messenger
