@@ -32,10 +32,6 @@ window.document.addEventListener("DOMContentLoaded", function() {
           img: 'denture.jpg',
           link: 'denture'
         }, {
-          title: 'ครอบฟัน',
-          img: 'veneers.jpg',
-          link: 'denture'
-        }, {
           title: 'ทันตกรรมทั่วไป',
           img: 'regular.jpg',
           link: 'dental'
