@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+http://smile-delight.netlify.com/* http://www.smiledelightclinic.com/:splat 301!
